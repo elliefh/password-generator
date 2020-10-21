@@ -14,6 +14,7 @@ function generatePassword() {
     // First, we prompt user's password length criteria 
     if (confirm) {
         var passwordLength = prompt("Please type a number between 8 and 128 to specify your desired password length.");
+        console.log(passwordLength);
 
         // If the user correctly provides a number between 8 to 128 characters, we proceed to ask the user's password character criteria 
         if (passwordLength>=8 && passwordLength <=128) {
@@ -21,6 +22,10 @@ function generatePassword() {
             var uppercase = confirm("Would you like uppercase characters included in your password?");
             var numeric = confirm("Would you like numeric characters included in your password?");
             var special = confirm("Would you like special characters included in your password?");
+            console.log(lowercase);
+            console.log(uppercase);
+            console.log(numeric);
+            console.log(special);
 
             // If the user chooses at least one of the character types, we proceed to generating the password that meets all criteria 
             if (lowercase || uppercase || numeric || special) {       
@@ -37,34 +42,63 @@ function generatePassword() {
                 if (special) {
                     chosen = chosen.concat(spec);
                 }
+                console.log(chosen);
+
                 for (let i = 0; i < passwordLength; i++) {
                     newPassword[i] = chosen[Math.floor(Math.random()*chosen.length)];
                 }
+                console.log(newPassword);
+
                 // check that generated password matches the character type criteria; if it does not, randomly replace to satisfy criteria
-                for (let j = 0; j < newPassword.length; j++) {
-                    if (lowercase) {
-                        var check = low.indexOf(newPassword[j],0);
-                        if (check===-1) {
-                            newPassword[Math.floor(Math.random()*newPassword.length)] = low[(Math.floor(Math.random()*low.length))];
+                if (lowercase) {
+                    var checkLow = [];
+                    for (let j = 0; j < newPassword.length; j++) {
+                        if (low.indexOf(newPassword[j],0)>-1) {
+                            checkLow.push("Good");
                         }
                     }
-                    if (uppercase) {
-                        var check = up.indexOf(newPassword[j],0);
-                        if (check===-1) {
-                            newPassword[Math.floor(Math.random()*newPassword.length)] = up[(Math.floor(Math.random()*up.length))];
+                    console.log(checkLow);
+                    if (checkLow[0]!=="Good") {
+                        newPassword[Math.floor(Math.random()*newPassword.length)] = low[(Math.floor(Math.random()*low.length))];
+                    }
+                }
+
+                if (uppercase) {
+                    var checkUp = [];
+                    for (let j = 0; j < newPassword.length; j++) {
+                        if (up.indexOf(newPassword[j],0)>-1) {
+                            checkUp.push("Good");
                         }
                     }
-                    if (numeric) {
-                        var check = num.indexOf(newPassword[j],0);
-                        if (check===-1) {
-                            newPassword[Math.floor(Math.random()*newPassword.length)] = num[(Math.floor(Math.random()*num.length))];
+                    console.log(checkUp);
+                    if (checkUp[0]!=="Good") {
+                        newPassword[Math.floor(Math.random()*newPassword.length)] = up[(Math.floor(Math.random()*up.length))];
+                    }
+                }
+
+                if (numeric) {
+                    var checkNum = [];
+                    for (let j = 0; j < newPassword.length; j++) {
+                        if (num.indexOf(newPassword[j],0)>-1) {
+                            checkNum.push("Good");
                         }
                     }
-                    if (special) {
-                        var check = spec.indexOf(newPassword[j],0);
-                        if (check===-1) {
-                            newPassword[Math.floor(Math.random()*newPassword.length)] = spec[(Math.floor(Math.random()*spec.length))];
+                    console.log(checkNum);
+                    if (checkNum[0]!=="Good") {
+                        newPassword[Math.floor(Math.random()*newPassword.length)] = num[(Math.floor(Math.random()*num.length))];
+                    }
+                }
+
+                if (special) {
+                    var checkSpec = [];
+                    for (let j = 0; j < newPassword.length; j++) {
+                        if (spec.indexOf(newPassword[j],0)>-1) {
+                            checkSpec.push("Good");
                         }
+                    }
+                    console.log(checkSpec);
+                    if (checkSpec[0]!=="Good") {
+                        newPassword[Math.floor(Math.random()*newPassword.length)] = spec[(Math.floor(Math.random()*spec.length))];
                     }
                 }
             }
