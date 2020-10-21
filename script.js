@@ -40,7 +40,33 @@ function generatePassword() {
                 for (let i = 0; i < passwordLength; i++) {
                     newPassword[i] = chosen[Math.floor(Math.random()*chosen.length)];
                 }
-                console.log(newPassword.join(""));
+                // check that generated password matches the character type criteria; if it does not, randomly replace to satisfy criteria
+                for (let j = 0; j < newPassword.length; j++) {
+                    if (lowercase) {
+                        var check = low.indexOf(newPassword[j],0);
+                        if (check===-1) {
+                            newPassword[Math.floor(Math.random()*newPassword.length)] = low[(Math.floor(Math.random()*low.length))];
+                        }
+                    }
+                    if (uppercase) {
+                        var check = up.indexOf(newPassword[j],0);
+                        if (check===-1) {
+                            newPassword[Math.floor(Math.random()*newPassword.length)] = up[(Math.floor(Math.random()*up.length))];
+                        }
+                    }
+                    if (numeric) {
+                        var check = num.indexOf(newPassword[j],0);
+                        if (check===-1) {
+                            newPassword[Math.floor(Math.random()*newPassword.length)] = num[(Math.floor(Math.random()*num.length))];
+                        }
+                    }
+                    if (special) {
+                        var check = spec.indexOf(newPassword[j],0);
+                        if (check===-1) {
+                            newPassword[Math.floor(Math.random()*newPassword.length)] = spec[(Math.floor(Math.random()*spec.length))];
+                        }
+                    }
+                }
             }
 
             // If the user does not choose any of the above character types, we cannot generate a password. 
@@ -49,7 +75,7 @@ function generatePassword() {
             }
         }
 
-        // if the user inputs a number over 128, below 8, or a non-numeric value, we cannot generate a password. 
+        // If the user inputs a number over 128, below 8, or a non-numeric value, we cannot generate a password. 
         else {
             alert("Please type a number between 8 and 128");
         }
