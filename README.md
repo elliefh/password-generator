@@ -7,6 +7,8 @@ The "generate password" function is executed when the button is clicked on the w
 
 Through JavaScript, the user is presented with a series of prompts to determine password criteria, specifically password lenth (between 8 to 128 characters) and password character types (numerical, uppercase, lowercase, and special characters). The user's input is validated using if else statements (e.g., filtering out irrelevant inputs like 'pizza'). When all prompts are answered appropriately, a random password that matches user's criteria is generated and displayed on the screen. 
 
+The application be accessed here: https://elliefh.github.io/password-generator/
+
 # Usage
 This application can be used for anyone who needs a strong, secure password that meets certain criteria (e.g., password length, special characters, etc.). 
 
