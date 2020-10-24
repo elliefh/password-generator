@@ -29,7 +29,8 @@ function generatePassword() {
 
             // If the user chooses at least one of the character types, we proceed to generating the password that meets desired password length and character types 
             if (lowercase || uppercase || numeric || special) {       
-                alert("You're all set! Generating password...")
+                alert("You're all set! Generating password...");
+                chosen = [];
                 if (lowercase) {
                     chosen = chosen.concat(low);
                 }
